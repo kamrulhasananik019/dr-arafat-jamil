@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Clock, AlertCircle, Stethoscope } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion'; // Import types
 import { useInView } from 'react-intersection-observer';
 
 interface FeatureItem {
@@ -51,7 +51,7 @@ export default function Features() {
     },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -62,7 +62,8 @@ export default function Features() {
     },
   };
 
-  const itemVariants = {
+  // Add proper typing to variants
+  const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
@@ -71,11 +72,11 @@ export default function Features() {
         type: 'spring',
         stiffness: 100,
         damping: 15,
-      },
+      } as Transition, // Type assertion
     },
   };
 
-  const cardHoverVariants = {
+  const cardHoverVariants: Variants = {
     hover: {
       y: -10,
       scale: 1.02,
@@ -83,7 +84,7 @@ export default function Features() {
         type: 'spring',
         stiffness: 300,
         damping: 20,
-      },
+      } as Transition, // Type assertion
     },
   };
 
@@ -93,13 +94,13 @@ export default function Features() {
 
       <motion.div
         animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' as const }}
         className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-blue-400 to-sky-300 rounded-full blur-3xl opacity-10"
       />
 
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' as const, delay: 1 }}
         className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-sky-400 to-blue-300 rounded-full blur-3xl opacity-10"
       />
 
@@ -137,7 +138,7 @@ export default function Features() {
                   <motion.div whileHover={{ rotateY: 180 }} transition={{ duration: 0.6 }} className={`inline-flex p-3 md:p-4 rounded-2xl mb-4 md:mb-6 ${feature.gradient}`}>
                     <motion.div
                       animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: feature.delay }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' as const, delay: feature.delay }}
                       className={`p-3 bg-gradient-to-br ${feature.color} rounded-xl text-white`}
                     >
                       {feature.icon}
@@ -151,7 +152,7 @@ export default function Features() {
                     Learn More
                     <motion.span
                       animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: feature.delay }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' as const, delay: feature.delay }}
                     >
                       →
                     </motion.span>

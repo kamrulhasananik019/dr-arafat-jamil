@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
 import {
@@ -26,7 +26,7 @@ export default function About() {
     threshold: 0.15,
   });
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -37,7 +37,7 @@ export default function About() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
@@ -46,7 +46,7 @@ export default function About() {
         type: 'spring',
         stiffness: 90,
         damping: 18,
-      },
+      } as Transition,
     },
   };
 
@@ -55,7 +55,7 @@ export default function About() {
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   };
 
@@ -123,7 +123,14 @@ export default function About() {
             <motion.div variants={itemVariants} className="relative">
               <motion.div animate={floatAnimation} className="relative mx-auto max-w-md">
                 <div className="relative aspect-[4/4] rounded-[2.5rem] overflow-hidden bg-white shadow-2xl shadow-blue-500/20 border-[10px] border-white">
-                  <Image src="/img/about.jpeg" alt="Dr. Arafat Jamil" fill className="object-cover" priority />
+                  <Image 
+                    src="/img/about.jpeg" 
+                    alt="Dr. Arafat Jamil" 
+                    fill 
+                    className="object-cover" 
+                    priority 
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent" />
                   <motion.div
                     animate={{
@@ -175,7 +182,10 @@ export default function About() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="mt-10 lg:mt-12 grid lg:grid-cols-2 md:grid-cols-1 gap-6">
-              <motion.div whileHover={{ scale: 1.03, y: -5 }} className="relative bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 shadow-lg border border-amber-200 overflow-hidden">
+              <motion.div 
+                whileHover={{ scale: 1.03, y: -5 }} 
+                className="relative bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 shadow-lg border border-amber-200 overflow-hidden"
+              >
                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-amber-200 to-yellow-100 rounded-bl-full opacity-50" />
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-xl">
@@ -192,14 +202,19 @@ export default function About() {
                 </div>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.03, y: -5 }} className="relative bg-gradient-to-br from-blue-50 to-sky-50 rounded-2xl p-6 shadow-lg border border-blue-200 overflow-hidden">
+              <motion.div 
+                whileHover={{ scale: 1.03, y: -5 }} 
+                className="relative bg-gradient-to-br from-blue-50 to-sky-50 rounded-2xl p-6 shadow-lg border border-blue-200 overflow-hidden"
+              >
                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-blue-200 to-sky-100 rounded-bl-full opacity-50" />
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gradient-to-r from-blue-600 to-sky-500 rounded-xl">
                     <Hospital className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-blue-700">{inView && <CountUp start={0} end={15} duration={2.5} />}+</div>
+                    <div className="text-3xl font-bold text-blue-700">
+                      {inView && <CountUp start={0} end={15} duration={2.5} />}+
+                    </div>
                     <p className="text-sm font-medium text-blue-800">Years Experience</p>
                     <p className="text-xs text-blue-600">Military & Navy Hospitals</p>
                   </div>

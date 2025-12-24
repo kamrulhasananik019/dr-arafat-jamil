@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, Variants, Transition } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   Calendar, 
@@ -28,7 +28,7 @@ export default function Hero() {
     setMounted(true);
   }, []);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -39,7 +39,7 @@ export default function Hero() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -48,11 +48,11 @@ export default function Hero() {
         type: 'spring',
         stiffness: 100,
         damping: 20,
-      },
+      } as Transition,
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8, x: 50 },
     visible: {
       opacity: 1,
@@ -63,7 +63,7 @@ export default function Hero() {
         stiffness: 100,
         damping: 15,
         delay: 0.3,
-      },
+      } as Transition,
     },
   };
 
@@ -72,7 +72,7 @@ export default function Hero() {
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   };
 
@@ -81,10 +81,9 @@ export default function Hero() {
     transition: {
       duration: 20,
       repeat: Infinity,
-      ease: 'linear',
+      ease: 'linear' as const,
     },
   };
-
 
   return (
     <section 
@@ -213,7 +212,7 @@ export default function Hero() {
                       transition={{
                         duration: 1.5,
                         repeat: Infinity,
-                        ease: 'easeInOut',
+                        ease: 'easeInOut' as const,
                       }}
                       className="group-hover:translate-x-1 transition-transform"
                     >
@@ -251,13 +250,10 @@ export default function Hero() {
                 className="relative z-20"
               >
                 <div className="relative w-[280px] h-[380px] xs:w-[320px] xs:h-[420px] sm:w-[380px] sm:h-[500px] md:w-[420px] md:h-[550px] lg:w-[450px] lg:h-[600px] xl:w-[480px] xl:h-[620px]">
-                  <motion.img
+                  <img
                     src="./img/hero.png"
                     alt="Dr. Lt Col Arafat Jamil"
                     className="w-full h-full object-contain drop-shadow-2xl"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 0.4 }}
                   />
                   
                   {/* Glow effect behind image */}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Transition, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
 import { 
@@ -106,7 +106,7 @@ export default function Services() {
     'Long-term Health Partnerships',
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -117,7 +117,7 @@ export default function Services() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0, scale: 0.9 },
     visible: {
       y: 0,
@@ -127,11 +127,11 @@ export default function Services() {
         type: 'spring',
         stiffness: 100,
         damping: 15,
-      },
+      } as Transition,
     },
   };
 
-  const cardHoverVariants = {
+  const cardHoverVariants: Variants = {
     hover: {
       y: -10,
       scale: 1.02,
@@ -139,7 +139,7 @@ export default function Services() {
         type: 'spring',
         stiffness: 300,
         damping: 20,
-      },
+      } as Transition,
     },
   };
 
@@ -148,7 +148,7 @@ export default function Services() {
     transition: {
       duration: 3,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   };
 
@@ -206,7 +206,7 @@ export default function Services() {
             className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full text-sm font-semibold mb-4 md:mb-6"
           >
             <Shield className="w-4 h-4" />
-            🔷 Clinical Services
+            Clinical Services
           </motion.div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6">
