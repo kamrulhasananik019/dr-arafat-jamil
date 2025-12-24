@@ -4,6 +4,7 @@ import Header from "./component/header/header";
 import Features from "./component/features/features";
 import About from "./component/about/about";
 import Services from "./component/Services/services";
+import InternationalExposure from "./component/internationalexposure/internationalexposure";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
     <Hero/>
     <Features/> 
     <About/>
+    <InternationalExposure/>
     <Services/>
   </div>
   );
